@@ -1,0 +1,43 @@
+﻿body {
+}
+.btn {
+    color: lawngreen;
+}
+#pierwszy {
+    width: 800px;
+    height: 40px;
+    background-color: #C0C0C0;
+    
+}
+#drugi {
+    width: 800px;
+    height: 400px;
+    background-color: #C0C0C0;
+    
+}
+#trzeci {
+    width: 200px;
+    height: 500px;
+    background-color: #C0C0C0;
+    
+}
+.lewa_strona {
+    width: 80%;
+    float: left;
+}
+.prawa_strona {
+    width: 20%;
+    float: left;
+}
+.btn_odrzuc {
+    color: black;
+    background-color: green;
+    
+}
+.btn_zastosuj {
+    color: black;
+    background-color: green;
+}
+.btn_odrzuc:hover {
+    background-color: green;
+}
