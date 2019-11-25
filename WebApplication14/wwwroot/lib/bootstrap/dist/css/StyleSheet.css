@@ -11,7 +11,7 @@
 }
 #drugi {
     width: 800px;
-    height: 400px;
+    height: 500px;
     background-color: #C0C0C0;
     
 }
@@ -31,13 +31,15 @@
 }
 .btn_odrzuc {
     color: black;
-    background-color: green;
-    
+    background-color: red;
 }
-.btn_zastosuj {
+.btn_dodaj {
     color: black;
     background-color: green;
 }
 .btn_odrzuc:hover {
     background-color: green;
+}
+.text-black {
+    color: black;
 }
