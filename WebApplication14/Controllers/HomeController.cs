@@ -19,9 +19,9 @@ namespace WebApplication14.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Login()
         {
-            return View();
+            return View("Areas/Identity/Pages/Account/Login");
         }
 
         public IActionResult Panel()
