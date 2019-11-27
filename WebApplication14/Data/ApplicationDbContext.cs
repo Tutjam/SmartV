@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SmartHome.Models;
 
 namespace WebApplication14.Data
 {
@@ -12,5 +13,6 @@ namespace WebApplication14.Data
             : base(options)
         {
         }
+        public DbSet<SmartHome.Models.Room> Room { get; set; }
     }
 }
