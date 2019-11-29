@@ -36,7 +36,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account
 
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "Hasło oraz hasło potwierdzające różnią się od siebie.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
@@ -46,7 +46,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account
         {
             if (code == null)
             {
-                return BadRequest("A code must be supplied for password reset.");
+                return BadRequest("Aby zresetować hasło, należy podać kod.");
             }
             else
             {
