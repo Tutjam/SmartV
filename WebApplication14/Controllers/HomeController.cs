@@ -26,7 +26,7 @@ namespace WebApplication14.Controllers
 
         public IActionResult Panel()
         {
-            return RedirectToAction("Index","Panel");
+            return RedirectToAction("Index","Rooms");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

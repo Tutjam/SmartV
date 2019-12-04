@@ -13,6 +13,6 @@ namespace WebApplication14.Data
             : base(options)
         {
         }
-        public DbSet<SmartHome.Models.Room> Room { get; set; }
+        public DbSet<Room> Room { get; set; }
     }
 }
