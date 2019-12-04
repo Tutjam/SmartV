@@ -7,24 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartHome.Models;
 using WebApplication14.Data;
-using WebApplication14.Controllers;
+using Microsoft.AspNetCore.Identity;
 
 namespace SmartHome.Controllers
 {
     public class RoomsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public RoomsController(ApplicationDbContext context)
+        public RoomsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
-
+            _userManager = userManager;
         }
 
         // GET: Rooms
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Room.ToListAsync());
+            var userId = _userManager.GetUserId(HttpContext.User);
+            return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());
         }
 
         // GET: Rooms/Details/5
@@ -58,8 +60,10 @@ namespace SmartHome.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,OwnerId")] Room room)
         {
+            var userId = _userManager.GetUserId(HttpContext.User);
             if (ModelState.IsValid)
             {
+                room.OwnerId = userId;
                 _context.Add(room);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
