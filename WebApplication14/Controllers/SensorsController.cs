@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartHome.Models;
 using WebApplication14.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace SmartHome.Controllers
 {
     public class SensorsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public SensorsController(ApplicationDbContext context)
+        public SensorsController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Sensors
@@ -46,6 +49,9 @@ namespace SmartHome.Controllers
         // GET: Sensors/Create
         public IActionResult Create()
         {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ICollection<Room> rooms = _context.Room.Where(x => (x.OwnerId == userId)).ToList();
+            ViewBag.rooms = rooms;
             return View();
         }
 
