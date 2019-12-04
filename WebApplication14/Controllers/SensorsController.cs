@@ -68,9 +68,9 @@ namespace SmartHome.Controllers
                 sensor.OwnerSensorId = userId;
                 _context.Add(sensor);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Rooms");
             }
-            return View(sensor);
+              return View(sensor);
         }
 
         // GET: Sensors/Edit/5

@@ -16,10 +16,12 @@
             <th class="text-white">
                 @Html.DisplayNameFor(model => model.SensorName)
             </th>
+            <!--
             <th class="text-white">
                 @Html.DisplayNameFor(model => model.RoomId)
             </th>
             <th></th>
+                -->
         </tr>
     </thead>
     <tbody>
@@ -28,6 +30,7 @@
             <td class="text-white">
                 @Html.DisplayFor(modelItem => item.SensorName)
             </td>
+            <!--
             <td class="text-white">
                 @Html.DisplayFor(modelItem => item.RoomId)
             </td>
@@ -36,6 +39,7 @@
                 <a asp-action="Details" asp-route-id="@item.SensorId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.SensorId">Delete</a>
             </td>
+    -->
         </tr>
 }
     </tbody>
