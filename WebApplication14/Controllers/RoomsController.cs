@@ -9,6 +9,7 @@ using SmartHome.Models;
 using WebApplication14.Data;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace SmartHome.Controllers
 {
     public class RoomsController : Controller
@@ -26,6 +27,8 @@ namespace SmartHome.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = _userManager.GetUserId(HttpContext.User);
+            ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.OwnerSensorId == userId)).ToList();
+            ViewBag.sensors = sensors;
             return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());
         }
 

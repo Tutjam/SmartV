@@ -19,12 +19,6 @@
                 <th class="text-white ">
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
-                <!--
-                <th class="text-white">
-                    @Html.DisplayNameFor(model => model.OwnerId)
-                </th>
-                    -->
-
             </tr>
         </thead>
 
@@ -58,34 +52,17 @@
                 <th class="text-white ">
                     @Html.DisplayNameFor(model => model.Name)
                 </th>
-                <!--
-                <th class="text-white">
-                    @Html.DisplayNameFor(model => model.OwnerId)
-                </th>
-                    -->
-
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var item in Model)
+            @foreach (var item in ViewBag.sensors)
             {
                 <tr>
                     <td class="text-white">
-                        <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
+                        <a asp-action="SeeSensor"> @item.SensorName</a>
                     </td>
-                    <!--
-                            <td class="text-white">
-                                @Html.DisplayFor(modelItem => item.OwnerId)
-                            </td>
-                    -->
-                    <!--
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </td>
-                    -->
+   
                 </tr>
             }
         </tbody>

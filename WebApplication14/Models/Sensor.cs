@@ -10,5 +10,6 @@ namespace SmartHome.Models
         public int SensorId { get; set; }
         public String SensorName { get; set; }
         public int RoomId { get; set; }
+        public String OwnerSensorId { get; set; }
     }
 }

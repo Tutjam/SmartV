@@ -60,10 +60,12 @@ namespace SmartHome.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SensorId,SensorName,RoomId")] Sensor sensor)
+        public async Task<IActionResult> Create([Bind("SensorId,SensorName,RoomId,OwnerSensorId")] Sensor sensor)
         {
+            var userId = _userManager.GetUserId(HttpContext.User);
             if (ModelState.IsValid)
             {
+                sensor.OwnerSensorId = userId;
                 _context.Add(sensor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -92,7 +94,7 @@ namespace SmartHome.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SensorId,SensorName,RoomId")] Sensor sensor)
+        public async Task<IActionResult> Edit(int id, [Bind("SensorId,SensorName,RoomId,OwnerSensorId")] Sensor sensor)
         {
             if (id != sensor.SensorId)
             {
