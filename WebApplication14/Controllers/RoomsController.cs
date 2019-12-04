@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SmartHome.Models;
 using WebApplication14.Data;
+using WebApplication14.Controllers;
 
 namespace SmartHome.Controllers
 {
@@ -17,6 +18,7 @@ namespace SmartHome.Controllers
         public RoomsController(ApplicationDbContext context)
         {
             _context = context;
+
         }
 
         // GET: Rooms

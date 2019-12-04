@@ -1,54 +1,94 @@
 ﻿@model IEnumerable<SmartHome.Models.Room>
 
-@{
-    ViewData["Title"] = "Index";
-}
 
-<h1> Panel Smart Home </h1>
+    @{
+        ViewData["Title"] = "Index";
+    }
 
-<p>
-    <a asp-action="Create">Dodaj Pokój&nbsp;&nbsp;</a>
-    <a asp-action="Settings">Ustawienia&nbsp;&nbsp;</a>
-    <a asp-controller="Sensors" asp-action="Index">Pokaż sensory&nbsp;&nbsp;</a>
-</p>
+    <h1> Panel Smart Home </h1>
 
-        <table class="table" style="float: left; width: 300px; background-color:darkblue" border="10">
-            <thead>
+    <p>
+        <a asp-action="Create">Dodaj Pokój&nbsp;&nbsp;</a>
+        <a asp-action="Settings">Ustawienia&nbsp;&nbsp;</a>
+        <a asp-controller="Sensors" asp-action="Index">Pokaż sensory&nbsp;&nbsp;</a>
+    </p>
+
+    <table class="table" style="float: left; width: 300px; background-color:darkblue" border="10">
+        <thead>
+            <tr>
+                <th class="text-white ">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <!--
+                <th class="text-white">
+                    @Html.DisplayNameFor(model => model.OwnerId)
+                </th>
+                    -->
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th class="text-white ">
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
+                    <td class="text-white">
+                        <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
+                    </td>
                     <!--
-                    <th class="text-white">
-                        @Html.DisplayNameFor(model => model.OwnerId)
-                    </th>
-                        -->
-                    
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.OwnerId)
+                            </td>
+                    -->
+                    <!--
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                    -->
                 </tr>
-            </thead>
+            }
+        </tbody>
+    </table>
 
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td class="text-white">
-                            <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
-                        </td>
-                        <!--
-                                <td class="text-white">
-                                    @Html.DisplayFor(modelItem => item.OwnerId)
-                                </td>
-                        -->
-                        <!--
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                </td>
-                        -->
-                    </tr>
-                }
-            </tbody>
-        </table>
+    <table class="table" style="float: right; width: 300px; background-color:darkblue" border="10">
+        <thead>
+            <tr>
+                <th class="text-white ">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <!--
+                <th class="text-white">
+                    @Html.DisplayNameFor(model => model.OwnerId)
+                </th>
+                    -->
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-white">
+                        <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
+                    </td>
+                    <!--
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.OwnerId)
+                            </td>
+                    -->
+                    <!--
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                    -->
+                </tr>
+            }
+        </tbody>
+    </table>
 
 

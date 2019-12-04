@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,5 +16,7 @@ namespace WebApplication14.Data
         }
         public DbSet<Room> Room { get; set; }
         public DbSet<SmartHome.Models.Sensor> Sensor { get; set; }
+
+       
     }
 }
