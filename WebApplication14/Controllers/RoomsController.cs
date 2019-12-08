@@ -32,6 +32,15 @@ namespace SmartHome.Controllers
             return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());
         }
 
+        // GET: Rooms/Settings
+        public async Task<IActionResult> Settings()
+        {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.OwnerSensorId == userId)).ToList();
+            ViewBag.sensors = sensors;
+            return View(await _context.Room.Where(x => (x.OwnerId == userId)).ToListAsync());
+        }
+
         // GET: Rooms/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -120,7 +129,7 @@ namespace SmartHome.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Settings));
             }
             return View(room);
         }
@@ -151,7 +160,7 @@ namespace SmartHome.Controllers
             var room = await _context.Room.FindAsync(id);
             _context.Room.Remove(room);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Settings));
         }
 
         private bool RoomExists(int id)

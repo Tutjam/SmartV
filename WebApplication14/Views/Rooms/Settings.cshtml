@@ -1,0 +1,70 @@
+﻿@model IEnumerable<SmartHome.Models.Room>
+
+
+@{
+    ViewData["Title"] = "Ustawienia";
+}
+
+<h1> Ustawienia </h1>
+
+<p>
+    <a asp-action="Create">Dodaj Pokój&nbsp;&nbsp;</a>
+    <a asp-action="Settings">Ustawienia&nbsp;&nbsp;</a>
+    <a asp-controller="Sensors" asp-action="Create">Dodaj czujnik&nbsp;&nbsp;</a>
+</p>
+
+<table class="table" style="float: left; width: 500px; background-color:darkblue" border="1">
+    <thead>
+        <tr>
+            <td class="text-white">Nazwa pokoju<!--@Html.DisplayNameFor(model => model.Name)--></td>
+            <!--<th class="text-white">
+        @Html.DisplayNameFor(model => model.Name)
+    </th>-->
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-white">
+                    <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
+                <!--
+                        <td class="text-white">
+                            @Html.DisplayFor(modelItem => item.OwnerId)
+                        </td>
+                -->
+                
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Zmień nazwę</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Usuń pokój</a>
+                        </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table" style="float: right; width: 300px; background-color:darkblue" border="1">
+    <thead>
+        <tr>
+            <td class="text-white">Nazwa czujnika<!--@Html.DisplayNameFor(model => model.Name)--></td>
+            <!--<th class="text-white">
+        @Html.DisplayNameFor(model => model.Name)
+    </th>-->
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in ViewBag.sensors)
+        {
+            <tr>
+                <td class="text-white">
+                    <a asp-action="SeeSensor"> @item.SensorName</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
