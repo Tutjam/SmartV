@@ -1,0 +1,36 @@
+﻿@model SmartHome.Models.Sensor
+
+@{
+    ViewData["Title"] = "Zmiana nazwy czujnika";
+}
+
+<h1>Zmiana nazwy czujnika</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SensorId" />
+            <div class="form-group">
+                <label asp-for="SensorName" class="control-label"></label>
+                <input asp-for="SensorName" class="form-control" />
+                <span asp-validation-for="SensorName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="RoomId" />
+            <!--<div class="form-group">
+            <label asp-for="RoomId" class="control-label"></label>
+            <input asp-for="RoomId" class="form-control" />
+            <span asp-validation-for="RoomId" class="text-danger"></span>
+            </div>-->
+            <div class="form-group">
+                <a asp-controller="Rooms" asp-action="Settings" class="btn btn-danger">Powrót</a>
+                <input type="submit" value="Zapisz" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

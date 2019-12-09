@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SmartHome.Models.Sensor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Dodaj sensor&nbsp;&nbsp;</a>
+    <a asp-controller="Rooms" asp-action="Index">Wróc do pokoi&nbsp;&nbsp;</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-white">
+                @Html.DisplayNameFor(model => model.SensorName)
+            </th>
+            <!--
+            <th class="text-white">
+                @Html.DisplayNameFor(model => model.RoomId)
+            </th>
+            <th></th>
+                -->
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="text-white">
+                @Html.DisplayFor(modelItem => item.SensorName)
+            </td>
+            <!--
+            <td class="text-white">
+                @Html.DisplayFor(modelItem => item.RoomId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SensorId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SensorId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SensorId">Delete</a>
+            </td>
+    -->
+        </tr>
+}
+    </tbody>
+</table>

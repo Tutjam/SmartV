@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SmartHome.Models.Room>
+
+
+    @{
+        ViewData["Title"] = "Index";
+    }
+
+    <h1> Panel Smart Home </h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Dodaj Pokój</a>
+        <a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Dodaj czujnik</a>
+        <a asp-action="Settings" class="btn btn-primary">Ustawienia</a>
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">Edycja konta</a>
+    </p>
+
+    <table class="table" style="float: left; width: 500px; background-color:darkblue" border="10">
+        <thead>
+            <tr>
+                <th class="text-white ">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-white">
+                        <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
+                    </td>
+                    <!--
+                            <td class="text-white">
+                                @Html.DisplayFor(modelItem => item.OwnerId)
+                            </td>
+                    -->
+                    <!--
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                    -->
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table" style="float: right; width: 300px; background-color:darkblue" border="10">
+        <thead>
+            <tr>
+                <th class="text-white ">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in ViewBag.sensors)
+            {
+                <tr>
+                    <td class="text-white">
+                        <a asp-action="SeeSensor"> @item.SensorName</a>
+                    </td>
+   
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
