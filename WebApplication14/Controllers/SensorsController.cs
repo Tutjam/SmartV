@@ -101,10 +101,12 @@ namespace SmartHome.Controllers
                 return NotFound();
             }
 
+            var userId = _userManager.GetUserId(HttpContext.User);
             if (ModelState.IsValid)
             {
                 try
                 {
+                    sensor.OwnerSensorId = userId;
                     _context.Update(sensor);
                     await _context.SaveChangesAsync();
                 }
@@ -119,7 +121,7 @@ namespace SmartHome.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "Rooms");
             }
             return View(sensor);
         }
@@ -150,7 +152,7 @@ namespace SmartHome.Controllers
             var sensor = await _context.Sensor.FindAsync(id);
             _context.Sensor.Remove(sensor);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Rooms");
         }
 
         private bool SensorExists(int id)
