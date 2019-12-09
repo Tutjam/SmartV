@@ -28,7 +28,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="SensorId" />
-        <a asp-action="Index" class="btn btn-danger">Powrót</a>
+        <a asp-controller="Rooms" asp-action="Settings" class="btn btn-danger">Powrót</a>
         <input type="submit" value="Usuń czujnik" class="btn btn-success" />
     </form>
 </div>

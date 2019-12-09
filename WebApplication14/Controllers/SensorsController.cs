@@ -152,7 +152,7 @@ namespace SmartHome.Controllers
             var sensor = await _context.Sensor.FindAsync(id);
             _context.Sensor.Remove(sensor);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Rooms");
+            return RedirectToAction("Settings", "Rooms");
         }
 
         private bool SensorExists(int id)
