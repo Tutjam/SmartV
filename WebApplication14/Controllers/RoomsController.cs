@@ -201,6 +201,11 @@ namespace SmartHome.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var room = await _context.Room.FindAsync(id);
+            ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.RoomId == room.Id)).ToList();
+            foreach(var item in sensors)
+            {
+                _context.Sensor.Remove(item);
+            }
             _context.Room.Remove(room);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
