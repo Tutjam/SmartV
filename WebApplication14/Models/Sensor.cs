@@ -18,7 +18,7 @@ namespace SmartHome.Models
         [Required]
         public int RoomId { get; set; }
 
-        [Required]
+        //[Required]
         public String OwnerSensorId { get; set; }
     }
 }
