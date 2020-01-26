@@ -16,7 +16,7 @@ namespace WebApplication14.Data
         }
         public DbSet<Room> Room { get; set; }
         public DbSet<SmartHome.Models.Sensor> Sensor { get; set; }
-
+        public DbSet<SensorData> SensorData { get; set; }
        
     }
 }
