@@ -9,6 +9,8 @@ namespace SmartHome.Models
     {
         public int ImageId { get; set; }
         public int RoomId { get; set; }
+        
         public String OwnerImageId { get; set; }
+        //public String Url { get; set; }
     }
 }

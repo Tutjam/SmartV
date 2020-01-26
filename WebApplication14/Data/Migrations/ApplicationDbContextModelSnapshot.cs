@@ -184,21 +184,6 @@ namespace WebApplication14.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SmartHome.Models.Image", b =>
-                {
-                    b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("OwnerImageId");
-
-                    b.Property<int>("RoomId");
-
-                    b.HasKey("ImageId");
-
-                    b.ToTable("Image");
-                });
-
             modelBuilder.Entity("SmartHome.Models.Room", b =>
                 {
                     b.Property<int>("Id")

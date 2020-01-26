@@ -73,7 +73,7 @@ namespace SmartHome.Controllers
 
                     await _context.SaveChangesAsync();
                    
-                    return RedirectToAction("Index/1","Rooms");
+                    return RedirectToAction("Index","Rooms");
                 }
 
                 return View(image);
