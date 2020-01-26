@@ -26,6 +26,9 @@ namespace SmartHome.Controllers
         // GET: Rooms
         public async Task<IActionResult> Index(int id)
         {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ICollection<Room> rooms = _context.Room.Where(x => (x.OwnerId == userId)).ToList();
+            /*
             ViewBag.RoomList = _context.Room;
             if (_context.Room.Count() == 0)
                 return View();
@@ -43,6 +46,24 @@ namespace SmartHome.Controllers
                 return View(null);
             var room = await _context.Room
                 .FirstOrDefaultAsync(m => m.Id == currentIndex);
+                */
+
+            ViewBag.RoomList = rooms;
+            if (rooms.Count() == 0)
+                return View();
+
+            int currentIndex = 1;
+            int roomsCounter = rooms.Count();
+            id = id % roomsCounter;
+            if (id == -1)
+                id = roomsCounter - 1;
+            if (id == 0)
+                id += roomsCounter;
+            if (id <= roomsCounter && id > 0)
+                currentIndex = rooms.ElementAt(id - 1).Id;
+            else
+                return View(null);
+            var room = rooms.FirstOrDefault(m => m.Id == currentIndex);
 
             return View(room);
         }
