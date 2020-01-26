@@ -1,10 +1,15 @@
-﻿@model IEnumerable<SmartHome.Models.Room>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model IEnumerable<SmartHome.Models.Room>
 
 
-    @{
-        ViewData["Title"] = "Index";
-    }
+@{
+    ViewData["Title"] = "Index";
+}
 
+@if (SignInManager.IsSignedIn(User)) //user zalogowany
+{
     <h1> Panel Smart Home </h1>
 
     <p>
@@ -63,10 +68,16 @@
                     <td class="text-white">
                         <a asp-action="SeeSensor"> @item.SensorName</a>
                     </td>
-   
+
                 </tr>
             }
         </tbody>
     </table>
-
-
+}
+else //user niezalogowany
+{
+    <div class="text-center">
+        <h1 class="display-4">Witaj w Panelu Smart Home</h1>
+        <p>Aby przejść do działania Zaloguj się .</p>
+    </div>
+}
