@@ -106,12 +106,13 @@ namespace SmartHome.Controllers
         public async Task<IActionResult> Create([Bind("Id,Name,OwnerId")] Room room)
         {
             var userId = _userManager.GetUserId(HttpContext.User);
+            room.OwnerId = userId;
             if (ModelState.IsValid)
             {
-                room.OwnerId = userId;
                 _context.Add(room);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return Redirect("Index/1");
             }
             return View(room);
         }

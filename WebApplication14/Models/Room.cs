@@ -15,7 +15,7 @@ namespace SmartHome.Models
         [Required]
         public String Name { get; set; }
 
-        [Required]
+        //[Required]
         public String OwnerId { get; set; }
     }
 }
