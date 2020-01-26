@@ -29,6 +29,8 @@ namespace SmartHome.Controllers
             var userId = _userManager.GetUserId(HttpContext.User);
             ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.OwnerSensorId == userId)).ToList();
             ViewBag.sensors = sensors;
+            ICollection<Image> images = _context.Image.Where(x => (x.OwnerImageId == userId)).ToList();
+            ViewBag.sensors = images;
             return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());
         }
 

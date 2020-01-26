@@ -1,0 +1,32 @@
+﻿
+@model SmartHome.Models.Image
+
+<h2>Basic File Upload</h2>
+@using (Html.BeginForm("Create",
+                     "Images",
+                     FormMethod.Post,
+                     new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Upload Image:</label>
+    <input type="file" name="file" id="file" />
+    <br>
+    <br>
+    <div class="form-group">
+        <label asp-for="RoomId" class="control-label"></label>
+        <select asp-for="RoomId" class="form-control">
+            <option value="">Wybierz pokój</option>
+            @foreach (var item in ViewBag.rooms)
+            {
+                <option value=@item.Id>@item.Name</option>
+            }
+        </select>
+        <span asp-validation-for="RoomId" class="text-danger"></span>
+    </div>
+
+        <input type="submit" value="Upload Image" />
+
+        <br>
+        <br>
+
+        @ViewBag.Message
+        }
