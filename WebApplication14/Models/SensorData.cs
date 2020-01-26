@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace SmartHome.Models
 {
-    public class Sensor
+    public class SensorData
     {
         [Required]
         [Key]
-        public int SensorId { get; set; }
+        public int sensorDataId { get; set; }
 
         [Required]
-        public String SensorName { get; set; }
+        public int value { get; set; }
 
         [Required]
-        public int RoomId { get; set; }
-
-        [Required]
-        public String OwnerSensorId { get; set; }
+        public DateTime date { get; set; }
     }
 }
