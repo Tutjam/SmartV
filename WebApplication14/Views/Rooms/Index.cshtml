@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
-@model IEnumerable<SmartHome.Models.Room>
+<!--model IEnumerable<SmartHome.Models.Room>-->
+@model SmartHome.Models.Room;
 
 
 @{
@@ -12,7 +13,7 @@
 {
     <p>
         <a asp-action="Create" class="btn btn-primary">Add room...</a>
-        <a asp-controller="Images" asp-action="Create" class="btn btn-primary">Add room image...</a>
+        <a asp-action="Create" class="btn btn-primary">Add room image...</a>
         <a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Add sensor...</a>
         <!--<a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Dodaj czujnik</a>-->
         <!--<a asp-action="Settings" class="btn btn-primary">Ustawienia</a>-->
@@ -21,14 +22,23 @@
 
     <div id="container-left">
         <div id="container-navigation">
-            <div id="left-arrow"></div>
-            <div id="room-name"></div>
-            <div id="right-arrow">></div>
-        </div>
-        <div id="room-image">
+            @if (Model != null)
+            {
+                <div id="left-arrow"><a asp-action="Index" asp-route-id="@(Model.Id-1)">&lt;</a></div>
+                <div id="room-name">
+                    [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name)
+                </div>
+                <div id="right-arrow"><a asp-action="Index" asp-route-id="@(Model.Id+1)">></a></div>
+            }
+            else
+            {
+                <div id="left-arrow">&lt;</div>
+                <div id="room-name"></div>
+                <div id="right-arrow">></div>
+            }
 
-            @ViewBag.images 
         </div>
+        <div id="room-image"></div>
     </div>
     <div id="container-right">
         <div id="sensor-table">
@@ -73,17 +83,17 @@ else //user niezalogowany
         <thead>
             <tr>
                 <th class="text-white ">
-                    @Html.DisplayNameFor(model => model.Name)
+                    Html.DisplayNameFor(model => model.Name)
                 </th>
             </tr>
         </thead>
 
         <tbody>
-            @foreach (var item in Model)
+            foreach (var item in Model)
             {
                 <tr>
                     <td class="text-white">
-                        <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
+                        <a asp-action="SeeSensor"> Html.DisplayFor(modelItem => item.Name)</a>
                     </td>
                 </tr>
 }
@@ -94,17 +104,17 @@ else //user niezalogowany
     <thead>
         <tr>
             <th class="text-white ">
-                @Html.DisplayNameFor(model => model.Name)
+                Html.DisplayNameFor(model => model.Name)
             </th>
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var item in ViewBag.sensors)
+        foreach (var item in ViewBag.sensors)
         {
             <tr>
                 <td class="text-white">
-                    <a asp-action="SeeSensor"> @item.SensorName</a>
+                    <a asp-action="SeeSensor"> item.SensorName</a>
                 </td>
 
             </tr>

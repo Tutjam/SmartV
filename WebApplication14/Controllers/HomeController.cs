@@ -17,7 +17,8 @@ namespace WebApplication14.Controllers
         public IActionResult Index()
         {
             //return View();
-            return RedirectToAction("Index", "Rooms");
+            //return RedirectToAction("Index", "Rooms");
+            return Redirect("Rooms/Index/1");
         }
 
         public IActionResult Login()

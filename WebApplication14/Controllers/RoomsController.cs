@@ -24,14 +24,45 @@ namespace SmartHome.Controllers
         }
 
         // GET: Rooms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
+            /*if (id == null)
+            {
+                return View();
+            }
+            var room = await _context.Room
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (room == null)
+            {
+                return View(room);
+            }
             var userId = _userManager.GetUserId(HttpContext.User);
             ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.OwnerSensorId == userId)).ToList();
             ViewBag.sensors = sensors;
-            ICollection<Image> images = _context.Image.Where(x => (x.OwnerImageId == userId)).ToList();
-            ViewBag.sensors = images;
-            return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());
+            ViewBag.room = room;
+            return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());*/
+
+            if (_context.Room.Count() == 0)
+                return View();
+
+            var room = await _context.Room
+                .FirstOrDefaultAsync(m => m.Id == id);
+            var lastIndex = _context.Room.Last().Id;
+            if (room == null)
+            {
+                switch(id)
+                {
+                    case 1: return View(null);
+                    case 0: return Redirect(lastIndex.ToString());
+                    default: return Redirect("1");
+                }
+                /*if (id == 1)
+                    return View(null);
+                else
+                    return Redirect("1");*/
+            }
+
+            return View(room);
         }
 
         // GET: Rooms/Settings
@@ -75,12 +106,13 @@ namespace SmartHome.Controllers
         public async Task<IActionResult> Create([Bind("Id,Name,OwnerId")] Room room)
         {
             var userId = _userManager.GetUserId(HttpContext.User);
+            room.OwnerId = userId;
             if (ModelState.IsValid)
             {
-                room.OwnerId = userId;
                 _context.Add(room);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return Redirect("Index/1");
             }
             return View(room);
         }

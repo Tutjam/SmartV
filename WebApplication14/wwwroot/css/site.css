@@ -167,3 +167,7 @@ table {
 #apply-button {
     display: inline;
 }
+
+a{
+    color: black;
+}
