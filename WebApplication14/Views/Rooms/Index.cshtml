@@ -52,11 +52,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    @foreach (var item in (ICollection<SmartHome.Models.Sensor>)ViewBag.SensorList)
+                    {
+                        <tr>
+                            <td>@item.SensorName</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    }
                 </tbody>
             </table>
         </div>

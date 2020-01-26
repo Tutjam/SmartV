@@ -28,6 +28,7 @@ namespace SmartHome.Controllers
         {
             var userId = _userManager.GetUserId(HttpContext.User);
             ICollection<Room> rooms = _context.Room.Where(x => (x.OwnerId == userId)).ToList();
+
             /*
             ViewBag.RoomList = _context.Room;
             if (_context.Room.Count() == 0)
@@ -48,6 +49,8 @@ namespace SmartHome.Controllers
                 .FirstOrDefaultAsync(m => m.Id == currentIndex);
                 */
 
+
+
             ViewBag.RoomList = rooms;
             if (rooms.Count() == 0)
                 return View();
@@ -64,6 +67,9 @@ namespace SmartHome.Controllers
             else
                 return View(null);
             var room = rooms.FirstOrDefault(m => m.Id == currentIndex);
+
+            ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.RoomId == room.Id)).ToList();
+            ViewBag.SensorList = sensors;
 
             return View(room);
         }
