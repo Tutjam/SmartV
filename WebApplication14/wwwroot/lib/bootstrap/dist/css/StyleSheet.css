@@ -1,7 +1,8 @@
-﻿body {
+﻿.body {
+    background-color:aqua;
 }
 .btn {
-    color: lawngreen;
+    color: aqua;
 }
 #pierwszy {
     width: 800px;
@@ -42,4 +43,9 @@
 }
 .text-black {
     color: black;
+}
+.img-responsive {
+    background-image: url('c:\users\user1\source\repos\smartv3\webapplication14\content\images\smarthome.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }

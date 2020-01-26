@@ -33,20 +33,25 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+
+            [Required(ErrorMessage = "Pole 'Hasło' nie może być puste.")]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Hasło")]
+      
             public string OldPassword { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            
+            
+            [StringLength(100, ErrorMessage = "{0} musi mieć conajmniej {2} maksymalnie {1} znaków.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Required(ErrorMessage = "Pole 'Nowe hasło' nie może być puste.")]
+            [Display(Name = "Nowe hasło")]
             public string NewPassword { get; set; }
 
+            [Required(ErrorMessage = "Pole 'Potwierdź nowe hasło' nie może być puste.")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Potwierdź nowe hasło")]
+            [Compare("NewPassword", ErrorMessage = "Nowe hasło i hasło potwierdzające różnią się.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -55,7 +60,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie mogę załadować użytkownika o ID '{_userManager.GetUserId(User)}'.");
             }
 
             var hasPassword = await _userManager.HasPasswordAsync(user);
@@ -77,7 +82,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie mogę załadować użytkownika o ID '{_userManager.GetUserId(User)}'.");
             }
 
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, Input.OldPassword, Input.NewPassword);
@@ -85,14 +90,14 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
             {
                 foreach (var error in changePasswordResult.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    ModelState.AddModelError(string.Empty, "Wpisano błędne hasło");
                 }
                 return Page();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Użytkownik zmienił pomyślnie hasło");
+            StatusMessage = "Twoje hasło zostało zmienione.";
 
             return RedirectToPage();
         }

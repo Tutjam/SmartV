@@ -42,9 +42,10 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
             [Required]
             [EmailAddress]
             public string Email { get; set; }
-
+            
+            [RegularExpression(@"(\+[0-9]{2}|\+[0-9]{2}\(0\)|\(\+[0-9]{2}\)\(0\)|00[0-9]{2}|0)([0-9]{9}|[0-9\-\s]{9,18})", ErrorMessage = "Podano zły numer telefonu.")]
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Numer telefonu")]
             public string PhoneNumber { get; set; }
         }
 
@@ -53,7 +54,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie mogę załadować użytkownika o ID : '{_userManager.GetUserId(User)}'.");
             }
 
             var userName = await _userManager.GetUserNameAsync(user);
@@ -83,7 +84,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie mogę załadować użytkownika o ID : '{_userManager.GetUserId(User)}'.");
             }
 
             var email = await _userManager.GetEmailAsync(user);
@@ -93,7 +94,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
                 if (!setEmailResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                    throw new InvalidOperationException($"Wystąpił nieoczekiwany błąd podczas ustawiania adresu e-mail dla użytkownika o ID '{userId}'.");
                 }
             }
 
@@ -104,12 +105,12 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
                 if (!setPhoneResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
+                    throw new InvalidOperationException($"Wystąpił nieoczekiwany błąd podczas ustawiania adresu e-mail dla użytkownika o ID '{userId}'.");
                 }
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Twój profil został zaktualizowany";
             return RedirectToPage();
         }
 
@@ -123,7 +124,7 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie mogę załadować użytkownika o ID : '{_userManager.GetUserId(User)}'.");
             }
 
 
@@ -137,10 +138,10 @@ namespace WebApplication14.Areas.Identity.Pages.Account.Manage
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Zweryfikuj swój email.",
+                $"Proszę o zweryfikowanie swojego konta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>klikając tutaj</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "Email weryfikacyjny został wysłany. Sprawdź swoje konto email.";
             return RedirectToPage();
         }
     }
