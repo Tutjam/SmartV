@@ -42,6 +42,9 @@ namespace SmartHome.Controllers
             ViewBag.room = room;
             return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());*/
 
+            if (_context.Room.Count() == 0)
+                return View();
+
             var room = await _context.Room
                 .FirstOrDefaultAsync(m => m.Id == id);
             var lastIndex = _context.Room.Last().Id;

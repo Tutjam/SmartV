@@ -22,11 +22,21 @@
 
     <div id="container-left">
         <div id="container-navigation">
-            <div id="left-arrow"><a asp-action="Index" asp-route-id="@(Model.Id-1)">&lt;</a></div>
-            <div id="room-name">
-                [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name)
-            </div>
-            <div id="right-arrow"><a asp-action="Index" asp-route-id="@(Model.Id+1)">></a></div>
+            @if (Model != null)
+            {
+                <div id="left-arrow"><a asp-action="Index" asp-route-id="@(Model.Id-1)">&lt;</a></div>
+                <div id="room-name">
+                    [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name)
+                </div>
+                <div id="right-arrow"><a asp-action="Index" asp-route-id="@(Model.Id+1)">></a></div>
+            }
+            else
+            {
+                <div id="left-arrow">&lt;</div>
+                <div id="room-name"></div>
+                <div id="right-arrow">></div>
+            }
+
         </div>
         <div id="room-image"></div>
     </div>
