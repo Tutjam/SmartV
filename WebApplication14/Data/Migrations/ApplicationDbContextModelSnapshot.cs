@@ -184,23 +184,6 @@ namespace WebApplication14.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SmartHome.Models.Image", b =>
-                {
-                    b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("OwnerImageId");
-
-                    b.Property<int>("RoomId");
-
-                    b.Property<string>("Url");
-
-                    b.HasKey("ImageId");
-
-                    b.ToTable("image");
-                });
-
             modelBuilder.Entity("SmartHome.Models.Room", b =>
                 {
                     b.Property<int>("Id")
@@ -210,7 +193,8 @@ namespace WebApplication14.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<string>("OwnerId");
+                    b.Property<string>("OwnerId")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -223,7 +207,8 @@ namespace WebApplication14.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("OwnerSensorId");
+                    b.Property<string>("OwnerSensorId")
+                        .IsRequired();
 
                     b.Property<int>("RoomId");
 
