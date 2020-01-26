@@ -9,6 +9,8 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20200126140727_AddedImage.cs" />
     <Compile Remove="Data\Migrations\20200126140727_AddedImage.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200126224355_addedurl.cs" />
+    <Compile Remove="Data\Migrations\20200126224355_addedurl.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
