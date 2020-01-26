@@ -42,6 +42,7 @@ namespace SmartHome.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([Bind("ImageId,RoomId,OwnerImageId")] Image image ,IFormFile file)
         {
+
             if (file == null)
             {
                 ViewBag.String = "Brak wybranego pliku!";
@@ -72,7 +73,7 @@ namespace SmartHome.Controllers
 
                     await _context.SaveChangesAsync();
                    
-                    return RedirectToAction("Index","Rooms");
+                    return RedirectToAction("Index/1","Rooms");
                 }
 
                 return View(image);
