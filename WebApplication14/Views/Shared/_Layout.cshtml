@@ -26,7 +26,7 @@
             <div class="container">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Panel">Smart Home</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Panel">Current Time: @DateTime.Now.ToString("dddd, dd MMMM yyyy, H:mm")</a>
                 }
                 else
                 {
