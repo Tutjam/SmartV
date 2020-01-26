@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Smart Home</title>
-
+    
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     </environment>
@@ -21,43 +21,43 @@
     <link rel="stylesheet" href="~/css/site.css" />
     
 </head>
-<body class="card-img">
+<body style="background-color: white;">
 
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+    <header style="background-color: white;">
+        <nav  style="background-color: white; color: black;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+            <div class="container" style="background-color: white; color: black;">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Panel">Current Time: @DateTime.Now.ToString("dddd, dd MMMM yyyy, H:mm")</a>
+                    <a class="navbar-brand" style="color: black;" asp-area="" asp-controller="Home" asp-action="Panel">Current Time: @DateTime.Now.ToString("dddd, dd MMMM yyyy, H:mm")</a>
                 }
                 else
                 {
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Smart Home</a>
+                    <a class="navbar-brand" style="color: black;" asp-area="" asp-controller="Home" asp-action="Index">Smart Home</a>
                 }
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" style="color: black;" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" style="color: black;"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <div style="color: black;" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
 
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" style="background-color: white; color: black;">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; SmartHome 2019-2020 by Maciej Warakomski, Maksymilian Wasiluk, Bartosz Lech and Dominik Krajewski</a>
+    <footer class="border-top footer text-muted" style="background-color: white;">
+        <div class="container" style="background-color: white; color: black;">
+            &copy; SmartHome 2019-2020 by Maciej Warakomski, Maksymilian Wasiluk, Bartosz Lech and Dominik Krajewski
         </div>
     </footer>
-
+<!--
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
@@ -79,5 +79,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+    -->
 </body>
 </html>

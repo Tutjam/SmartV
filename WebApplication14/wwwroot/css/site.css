@@ -10,6 +10,7 @@ a.navbar-brand {
 
 /* Sticky footer styles
 -------------------------------------------------- */
+/*
 html {
     background-color:aqua;
     background-image: url('c:\users\user1\source\repos\smartv3\webapplication14\content\images\smarthome.jpg');
@@ -20,7 +21,7 @@ html {
         background-image: url('c:\users\user1\source\repos\smartv3\webapplication14\content\images\smarthome.jpg');
         font-size: 16px;
     }
-}
+}*/
 
 .border-top {
   border-top: 1px solid #e5e5e5;
@@ -43,15 +44,15 @@ button.accept-policy {
 html {
     position: relative;
     min-height: 100%;
-    background-color: black;
-    background-image: url('smarthome.jpg');
+    background-color: white;
+    /*background-image: url('smarthome.jpg');*/
 }
 
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color: black;
-    background-image: url('smarthome.jpg');
+    background-color: white;
+    /*background-image: url('smarthome.jpg');*/
 }
 .footer {
     position: absolute;
@@ -62,13 +63,20 @@ body {
     /* Set the fixed height of the footer here */
     height: 60px;
     line-height: 60px; /* Vertically center the text there */
-    background-image: url('smarthome.jpg');
+    /*background-image: url('smarthome.jpg');*/
 }
-
+/*
 .jumbotron {
     background-image: url('smarthome.jpg');
     background-color: black;
     background-size: cover;
     background-repeat: no-repeat;
+}*/
+
+.bg-white{
+    background-color: white;
 }
 
+.container{
+    background-color: white;
+}

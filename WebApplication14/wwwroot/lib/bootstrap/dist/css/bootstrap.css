@@ -60,7 +60,8 @@ body {
     line-height: 1.5;
     
     text-align: left;
-    background-color: black;
+    /*background-color: black;*/
+    background-color: white;
     background-image: url('c:\users\user1\source\repos\smartv3\webapplication14\content\images\smarthome.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -4462,7 +4463,8 @@ input[type="button"].btn-block {
 }
 
 .navbar-light .navbar-brand {
-  color: lawngreen;
+  /*color: lawngreen;*/
+  color: black;
 }
 
 .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
@@ -6596,7 +6598,7 @@ button.bg-dark:focus {
 }
 
 .bg-white {
-  background-color: black !important;
+  background-color: white !important;
 }
 
 .bg-transparent {
