@@ -22,13 +22,14 @@
 
     <div id="container-left">
         <div id="container-navigation">
-            @if (Model != null)
+            
+                @if (Model != null)
             {
-                <div id="left-arrow"><a asp-action="Index" asp-route-id="@(Model.Id-1)">&lt;</a></div>
+                <div id="left-arrow"><a asp-action="Index" asp-route-id="@((ViewBag.RoomList as IEnumerable<SmartHome.Models.Room>).ToList().IndexOf(Model))">&lt;</a></div>
                 <div id="room-name">
-                    [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name)
+                    [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name) <a style="font-size: 20px; color: red;" asp-action="Delete" asp-route-id="@(Model.Id)">[DELETE]</a>
                 </div>
-                <div id="right-arrow"><a asp-action="Index" asp-route-id="@(Model.Id+1)">></a></div>
+                <div id="right-arrow"><a asp-action="Index" asp-route-id="@((ViewBag.RoomList as IEnumerable<SmartHome.Models.Room>).ToList().IndexOf(Model)+2)">></a></div>
             }
             else
             {

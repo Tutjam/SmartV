@@ -26,12 +26,15 @@ namespace SmartHome.Controllers
         // GET: Rooms
         public async Task<IActionResult> Index(int id)
         {
+            ViewBag.RoomList = _context.Room;
             if (_context.Room.Count() == 0)
                 return View();
 
             int currentIndex = 1;
             int roomsCounter = _context.Room.ToList().Count();
             id = id % roomsCounter;
+            if (id == -1)
+                id = roomsCounter - 1;
             if (id == 0)
                 id += roomsCounter;
             if (id <= roomsCounter && id > 0)
@@ -173,7 +176,7 @@ namespace SmartHome.Controllers
             var room = await _context.Room.FindAsync(id);
             _context.Room.Remove(room);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Settings));
+            return RedirectToAction(nameof(Index));
         }
 
         private bool RoomExists(int id)
