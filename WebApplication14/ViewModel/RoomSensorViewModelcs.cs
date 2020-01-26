@@ -10,5 +10,7 @@ namespace SmartHome.Models
 
         public List<Room> rooms { get; set; }
         public List<Sensor> sensors { get; set; }
+
+        public List<Image> image { get; set; }
     }
 }

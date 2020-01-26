@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\20200126140727_AddedImage.cs" />
+    <Compile Remove="Data\Migrations\20200126140727_AddedImage.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\smarthome.jpg" />
   </ItemGroup>
 
@@ -21,6 +26,8 @@
 
   <ItemGroup>
     <Folder Include="Content\Images\" />
+    <Folder Include="Images\" />
+    <Folder Include="wwwroot\pictures\" />
   </ItemGroup>
 
 
