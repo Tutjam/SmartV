@@ -24,12 +24,42 @@ namespace SmartHome.Controllers
         }
 
         // GET: Rooms
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
+            /*if (id == null)
+            {
+                return View();
+            }
+            var room = await _context.Room
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (room == null)
+            {
+                return View(room);
+            }
             var userId = _userManager.GetUserId(HttpContext.User);
             ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.OwnerSensorId == userId)).ToList();
             ViewBag.sensors = sensors;
-            return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());
+            ViewBag.room = room;
+            return View(await _context.Room.Where(x => (x.OwnerId==userId)).ToListAsync());*/
+
+            var room = await _context.Room
+                .FirstOrDefaultAsync(m => m.Id == id);
+            var lastIndex = _context.Room.Last().Id;
+            if (room == null)
+            {
+                switch(id)
+                {
+                    case 1: return View(null);
+                    case 0: return Redirect(lastIndex.ToString());
+                    default: return Redirect("1");
+                }
+                /*if (id == 1)
+                    return View(null);
+                else
+                    return Redirect("1");*/
+            }
+
+            return View(room);
         }
 
         // GET: Rooms/Settings
