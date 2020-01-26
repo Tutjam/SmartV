@@ -10,14 +10,61 @@
 
 @if (SignInManager.IsSignedIn(User)) //user zalogowany
 {
-    <h1> Panel Smart Home </h1>
-
     <p>
-        <a asp-action="Create" class="btn btn-primary">Dodaj Pokój</a>
-        <a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Dodaj czujnik</a>
-        <a asp-action="Settings" class="btn btn-primary">Ustawienia</a>
-        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">Edycja konta</a>
+        <a asp-action="Create" class="btn btn-primary">Add room...</a>
+        <a asp-action="Create" class="btn btn-primary">Add room image...</a>
+        <a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Add sensor...</a>
+        <!--<a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Dodaj czujnik</a>-->
+        <!--<a asp-action="Settings" class="btn btn-primary">Ustawienia</a>-->
+        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">Settings</a>
     </p>
+
+    <div id="container-left">
+        <div id="container-navigation">
+            <div id="left-arrow"><</div>
+            <div id="room-name"></div>
+            <div id="right-arrow">></div>
+        </div>
+        <div id="room-image"></div>
+    </div>
+    <div id="container-right">
+        <div id="sensor-table">
+            <table>
+                <thead>
+                    <tr>
+                        <td>Room sensors</td>
+                        <td>Value</td>
+                        <td>Set to</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="buttons">
+            <div id="discard-button">
+                <a asp-action="Create" style="font-size: 1vw;" class="btn btn-danger">Discard changes</a>
+            </div>
+            <div id="apply-button">
+                <a asp-action="Create" style="font-size: 1vw;" class="btn btn-success">Apply</a>
+            </div>
+        </div>
+    </div>
+}
+else //user niezalogowany
+{
+    <div class="text-center">
+        <h1 class="display-4">Witaj w Panelu Smart Home</h1>
+        <p>Aby przejść do działania Zaloguj się .</p>
+    </div>
+}
+
+<!-- OLD
 
     <table class="table" style="float: left; width: 500px; background-color:darkblue" border="10">
         <thead>
@@ -35,49 +82,31 @@
                     <td class="text-white">
                         <a asp-action="SeeSensor"> @Html.DisplayFor(modelItem => item.Name)</a>
                     </td>
-                    <!--
-                            <td class="text-white">
-                                @Html.DisplayFor(modelItem => item.OwnerId)
-                            </td>
-                    -->
-                    <!--
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            </td>
-                    -->
                 </tr>
-            }
+}
         </tbody>
     </table>
 
-    <table class="table" style="float: right; width: 300px; background-color:darkblue" border="10">
-        <thead>
+<table class="table" style="float: right; width: 300px; background-color:darkblue" border="10">
+    <thead>
+        <tr>
+            <th class="text-white ">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in ViewBag.sensors)
+        {
             <tr>
-                <th class="text-white ">
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
+                <td class="text-white">
+                    <a asp-action="SeeSensor"> @item.SensorName</a>
+                </td>
+
             </tr>
-        </thead>
+        }
+    </tbody>
+</table>
 
-        <tbody>
-            @foreach (var item in ViewBag.sensors)
-            {
-                <tr>
-                    <td class="text-white">
-                        <a asp-action="SeeSensor"> @item.SensorName</a>
-                    </td>
-
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-else //user niezalogowany
-{
-    <div class="text-center">
-        <h1 class="display-4">Witaj w Panelu Smart Home</h1>
-        <p>Aby przejść do działania Zaloguj się .</p>
-    </div>
-}
+-->
