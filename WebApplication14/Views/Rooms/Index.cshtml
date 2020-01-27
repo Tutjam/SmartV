@@ -39,7 +39,18 @@
             }
 
         </div>
-        <div id="room-image"></div>
+        <div id="room-image">
+            @if (Model != null)
+            {
+                @foreach (var item in (ICollection<SmartHome.Models.Image>)ViewBag.Images)
+                {
+                    
+                       <img src="@item.OwnerImageId" width="756" height="440"/>
+                    
+
+                }
+            }
+        </div>
     </div>
     <div id="container-right">
         <div id="sensor-table">

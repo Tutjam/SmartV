@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using WebApplication14.Data;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -64,11 +65,13 @@ namespace SmartHome.Controllers
                     await file.CopyToAsync(stream);
                 }
 
+ 
+
                 var userId = _userManager.GetUserId(HttpContext.User);
                 if (ModelState.IsValid)
                 {
-                    
-                    image.OwnerImageId = userId;
+
+                    image.OwnerImageId = "/"+ file.FileName;
                     _context.Add(image);
 
                     await _context.SaveChangesAsync();

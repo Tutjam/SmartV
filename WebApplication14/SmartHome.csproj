@@ -13,6 +13,8 @@
     <Compile Remove="Data\Migrations\20200126224355_addedurl.Designer.cs" />
     <Compile Remove="Data\Migrations\20200126230617_addedurl.cs" />
     <Compile Remove="Data\Migrations\20200126230617_addedurl.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200126231752_added.cs" />
+    <Compile Remove="Data\Migrations\20200126231752_added.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +23,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebPages" Version="3.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />

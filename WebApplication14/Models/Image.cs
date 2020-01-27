@@ -11,6 +11,6 @@ namespace SmartHome.Models
         public int RoomId { get; set; }
         
         public String OwnerImageId { get; set; }
-        public String Url { get; set; }
+     
     }
 }

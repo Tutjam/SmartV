@@ -28,6 +28,7 @@ namespace SmartHome.Controllers
         {
             var userId = _userManager.GetUserId(HttpContext.User);
             ICollection<Room> rooms = _context.Room.Where(x => (x.OwnerId == userId)).ToList();
+            
 
             /*
             ViewBag.RoomList = _context.Room;
@@ -68,6 +69,8 @@ namespace SmartHome.Controllers
                 return View(null);
             var room = rooms.FirstOrDefault(m => m.Id == currentIndex);
 
+            ICollection<Image> images = _context.image.Where(x => (x.RoomId == room.Id)).ToList();
+            ViewBag.Images = images;
             ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.RoomId == room.Id)).ToList();
             ViewBag.SensorList = sensors;
 
