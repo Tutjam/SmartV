@@ -27,7 +27,8 @@
             {
                 <div id="left-arrow"><a asp-action="Index" asp-route-id="@((ViewBag.RoomList as IEnumerable<SmartHome.Models.Room>).ToList().IndexOf(Model))">&lt;</a></div>
                 <div id="room-name">
-                    [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name) <a style="font-size: 20px; color: red;" asp-action="Delete" asp-route-id="@(Model.Id)">[DELETE]</a>
+                    [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name) <a style="font-size: 20px; color: red;" asp-action="Delete" asp-route-id="@(Model.Id)">[DELETE]
+                                                                                                    <a style="font-size: 10px; color: blue;" asp-action="Edit" asp-route-id="@(Model.Id)">[EDIT]</a></a>
                 </div>
                 <div id="right-arrow"><a asp-action="Index" asp-route-id="@((ViewBag.RoomList as IEnumerable<SmartHome.Models.Room>).ToList().IndexOf(Model)+2)">></a></div>
             }

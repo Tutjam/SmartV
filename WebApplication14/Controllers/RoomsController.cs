@@ -175,7 +175,7 @@ namespace SmartHome.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Settings));
+                return RedirectToAction(nameof(Index));
             }
             return View(room);
         }
@@ -205,9 +205,14 @@ namespace SmartHome.Controllers
         {
             var room = await _context.Room.FindAsync(id);
             ICollection<Sensor> sensors = _context.Sensor.Where(x => (x.RoomId == room.Id)).ToList();
-            foreach(var item in sensors)
+            ICollection<Image> images = _context.image.Where(x => (x.RoomId == room.Id)).ToList();
+            foreach (var item in sensors)
             {
                 _context.Sensor.Remove(item);
+            }
+            foreach(var item in images)
+            {
+                _context.image.Remove(item);
             }
             _context.Room.Remove(room);
             await _context.SaveChangesAsync();
