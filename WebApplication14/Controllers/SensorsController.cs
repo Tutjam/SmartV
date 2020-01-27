@@ -76,6 +76,10 @@ namespace SmartHome.Controllers
         // GET: Sensors/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var userId = _userManager.GetUserId(HttpContext.User);
+            ICollection<Room> rooms = _context.Room.Where(x => (x.OwnerId == userId)).ToList();
+            ViewBag.rooms = rooms;
+
             if (id == null)
             {
                 return NotFound();
