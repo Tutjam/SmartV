@@ -68,7 +68,8 @@
                         @foreach (var item in (ICollection<SmartHome.Models.Sensor>)ViewBag.SensorList)
                         {
                             <tr>
-                                <td>@item.SensorName <a style="font-size: 10px; color: red;" asp-controller="Sensors" asp-action="Delete" asp-route-id="@(item.SensorId)">[DELETE]</a></td>
+                                <td>@item.SensorName <a style="font-size: 10px; color: red;" asp-controller="Sensors" asp-action="Delete" asp-route-id="@(item.SensorId)">[DELETE]</a>
+                                <a style="font-size: 10px; color: lawngreen;" asp-controller="Sensors" asp-action="Edit" asp-route-id="@(item.SensorId)">[EDIT]</a></td>
                                 <td></td>
                                 <td></td>
                             </tr>
