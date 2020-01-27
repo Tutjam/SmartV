@@ -13,10 +13,16 @@
 {
     <p>
         <a asp-action="Create" class="btn btn-primary">Add room...</a>
-        <a asp-controller="Images" asp-action="Create" class="btn btn-primary">Add room image...</a>
-        <a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Add sensor...</a>
-        <!--<a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Dodaj czujnik</a>-->
-        <!--<a asp-action="Settings" class="btn btn-primary">Ustawienia</a>-->
+        @if (Model != null)
+        {
+            <a asp-controller="Images" asp-action="Create" class="btn btn-primary">Add room image...</a>
+            <a asp-controller="Sensors" asp-action="Create" class="btn btn-primary">Add sensor...</a>
+        }
+        else
+        {
+            <button class="btn btn-danger">Add room image...</button>
+            <button class="btn btn-danger">Add sensor...</button>
+        }
         <a asp-area="Identity" asp-page="/Account/Manage/Index" class="btn btn-primary">Settings</a>
     </p>
 
@@ -28,7 +34,7 @@
                 <div id="left-arrow"><a asp-action="Index" asp-route-id="@((ViewBag.RoomList as IEnumerable<SmartHome.Models.Room>).ToList().IndexOf(Model))">&lt;</a></div>
                 <div id="room-name">
                     [@Html.DisplayFor(model => model.Id)] @Html.DisplayFor(model => model.Name) <a style="font-size: 20px; color: red;" asp-action="Delete" asp-route-id="@(Model.Id)">[DELETE]
-                                                                                                    <a style="font-size: 10px; color: blue;" asp-action="Edit" asp-route-id="@(Model.Id)">[EDIT]</a></a>
+                                                                                                    <a style="font-size: 20px; color: blue;" asp-action="Edit" asp-route-id="@(Model.Id)">[EDIT]</a></a>
                 </div>
                 <div id="right-arrow"><a asp-action="Index" asp-route-id="@((ViewBag.RoomList as IEnumerable<SmartHome.Models.Room>).ToList().IndexOf(Model)+2)">></a></div>
             }
